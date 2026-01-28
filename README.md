@@ -57,7 +57,6 @@ docs/SOURCES.md
 ---
 
 ## Architecture
-![Architecture Overview](architecture/architecture_overview.png)
 
 **Pipeline flow:**
 
