@@ -58,6 +58,13 @@ docs/SOURCES.md
 
 ## Architecture
 
+This project follows a clear, end-to-end analytics flow: CMS hospital data 
+is ingested, standardized into dimensional and fact tables, analyzed for 
+efficiency signals, and summarized into executive-ready insights.
+
+![Architecture Overview](architecture/architecture_overview.png)
+
+
 **Pipeline flow:**
 
 Raw CMS CSVs  
