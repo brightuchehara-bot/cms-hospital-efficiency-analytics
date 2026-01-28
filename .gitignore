@@ -1,10 +1,32 @@
-# local env
-.env
+# --------------------
+# Python / Environment
+# --------------------
 .venv/
+__pycache__/
+*.pyc
 
-# raw data (downloaded from CMS)
+# --------------------
+# Secrets
+# --------------------
+.env
+
+# --------------------
+# OS / Editor files
+# --------------------
+.DS_Store
+*.swp
+*.swo
+*.save
+
+# --------------------
+# Raw CMS data (large, reproducible)
+# --------------------
 data/raw/*.csv
 
-# generated outputs
+# --------------------
+# Processed & generated outputs
+# --------------------
+data/processed/
+analysis/*.csv
 reports/generated/
 
