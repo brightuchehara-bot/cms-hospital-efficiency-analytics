@@ -1,0 +1,10 @@
+# local env
+.env
+.venv/
+
+# raw data (downloaded from CMS)
+data/raw/*.csv
+
+# generated outputs
+reports/generated/
+

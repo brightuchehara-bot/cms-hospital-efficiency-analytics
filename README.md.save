@@ -1,0 +1,104 @@
+
+---
+
+## Reproduce the Analysis (Local)
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+python scripts/01_profile_raw_data.py
+python scripts/02_build_hospital_master.py
+python scripts/03_build_fact_mspb.py
+python scripts/05_build_efficiency_base.py
+deactivate
+deactivate
+python scripts/07_generate_exec_summary.py
+
+# CMS Hospital Efficiency & Cost Effectiveness Analytics
+
+Operations analytics project using **CMS Provider Data** to identify 
+hospitals with
+high relative Medicare spending and elevated readmission rates, 
+supporting
+data-driven operational review and cost-reduction efforts.
+
+---
+
+## Background & Overview
+
+Healthcare systems face pressure to reduce avoidable cost while 
+maintaining quality.
+This project analyzes **public CMS hospital performance data** to 
+surface:
+
+- Hospitals with **higher-than-expected Medicare spending**
+- Hospitals with **higher-than-expected readmissions**
+- Facilities where **both risks overlap**, creating clear operational 
+priority targets
+
+The goal is **clarity over complexity**:  
+identify *where to look first* and *why*.
+
+---
+
+## Architecture
+
+![Architecture Diagram](architecture/architecture.png)
+
+**Flow:**
+CMS Raw CSVs → Cleaned Fact Tables → Facility-Level Metrics → 
+Executive Watchlist
+
+---
+
+## Data Sources (CMS)
+
+- **Hospital General Information**
+- **Medicare Spending Per Beneficiary (MSPB)**
+- **Hospital Readmissions Reduction Program (HRRP)**
+
+> Full citations and CMS methodology links:  
+> 👉 [`docs/SOURCES.md`](docs/SOURCES.md)
+
+---
+
+## Executive Summary (One-Click “So What”)
+
+📌 **Key Insight**  
+Hospitals that are **simultaneously high-cost and high-readmission** 
+represent the
+strongest candidates for focused operational review.
+
+📊 **Coverage**
+- Total hospitals analyzed: **5,421**
+- Hospitals with MSPB data: **2,899**
+- Hospitals with Readmissions data: **2,833**
+- Hospitals with both metrics: **2,778**
+
+📈 **Method**
+- High-cost = MSPB ≥ 75th percentile
+- High-readmission = Readmission ratio ≥ 75th percentile
+- Ranking uses a **z-scored composite efficiency risk score**
+
+👉 **View full executive summary & tables:**  
+[`reports/generated/EXEC_SUMMARY.md`](reports/generated/EXEC_SUMMARY.md)
+
+---
+
+## Key Outputs
+
+| Output | Description |
+|------|------------|
+| `exec_watchlist_high_cost_high_readm.csv` | Hospitals high on both 
+cost & readmissions |
+| `exec_top_cost_mspb.csv` | Highest MSPB hospitals |
+| `exec_top_readmissions_ratio.csv` | Worst readmission performers |
+| `EXEC_SUMMARY.md` | Executive-ready narrative + tables |
+
+---
+
+## Project Structure
+
+
